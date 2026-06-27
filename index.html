@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>武林绘卷 · 岭南传统武术的流派传播与代际演变</title>
+  <meta name="description" content="聚焦传统体育、游艺与杂技——咏春、洪拳、蔡李佛、莫家拳等。广东 21 地市非遗武术拳种分布、批次演变与代际传播的交互可视化。" />
+
+  <link rel="stylesheet" href="css/style.css" />
+
+  <script src="js/p5.min.js"></script>
+  <script src="js/chart.umd.min.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark">武</span>
+      <span class="brand-text">武林绘卷 · 岭南武术</span>
+    </div>
+    <nav class="nav">
+      <a href="#hero" data-nav="hero">卷首</a>
+      <a href="#map" data-nav="map">流派地理</a>
+      <a href="#batches" data-nav="batches">批次洞察</a>
+      <a href="#timeline" data-nav="timeline">代际演变</a>
+      <a href="#insights" data-nav="insights">核心洞察</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Station 1 : Hero -->
+    <section id="hero" class="station station-hero" data-station="hero">
+      <div id="hero-canvas"></div>
+      <div class="hero-text">
+        <p class="kicker">卷一 · 武林绘卷</p>
+        <h1>岭南传统武术的<br/>流派传播与代际演变</h1>
+        <p class="subtitle">聚焦传统体育、游艺与杂技——咏春、洪拳、蔡李佛、莫家拳等</p>
+        <p class="hint">滚动开启卷轴 ↓</p>
+      </div>
+      <div class="scroll-cue" aria-hidden="true">↓</div>
+      <div class="hero-stats" aria-hidden="true">
+        <div class="hs-item"><span class="hs-num">30</span><span class="hs-lbl">武术类项目</span></div>
+        <div class="hs-item"><span class="hs-num">15</span><span class="hs-lbl">种传统拳种</span></div>
+        <div class="hs-item"><span class="hs-num">5</span><span class="hs-lbl">项国家级</span></div>
+        <div class="hs-item"><span class="hs-num">12</span><span class="hs-lbl">地市分布</span></div>
+      </div>
+    </section>
+
+    <!-- Station 2 : Map -->
+    <section id="map" class="station station-map" data-station="map">
+      <div class="section-head">
+        <p class="kicker">卷二 · 流派地理</p>
+        <h2>广东 21 地市武术拳种分布</h2>
+        <p class="lead">气泡大小代表该地市拥有的武术类非遗项目数。点击气泡，查看代表流派。</p>
+      </div>
+      <div id="map-canvas-wrap" class="map-wrap">
+        <canvas id="map-canvas"></canvas>
+        <div class="map-corner">
+          <span class="mc-num" id="mc-num">30</span>
+          <span class="mc-label">武术类项目</span>
+        </div>
+        <aside id="city-panel" class="city-panel" aria-hidden="true">
+          <button class="city-panel-close" aria-label="关闭">×</button>
+          <h3 id="city-panel-name">—</h3>
+          <p id="city-panel-count" class="city-panel-count">— 个拳种</p>
+          <ul id="city-panel-list"></ul>
+        </aside>
+      </div>
+      <div class="map-legend">
+        <span class="lg lg-core">● 四大核心区（佛山 · 广州 · 惠州 · 揭阳）</span>
+        <span class="lg lg-other">● 其他地市</span>
+        <span class="lg-note">数据：广东省省级以上非遗代表性项目名录（截止 2025-12-19）</span>
+      </div>
+    </section>
+
+    <!-- Station 3 : Batches -->
+    <section id="batches" class="station station-batches" data-station="batches">
+      <div class="section-head">
+        <p class="kicker">卷三 · 批次洞察</p>
+        <h2>省级 vs 国家级：先地方发掘，后国家背书</h2>
+        <p class="lead">对比各批次中省级与国家级武术项目的入选数量，揭示"联合保护"趋势。</p>
+      </div>
+      <div class="charts-grid">
+        <div class="chart-card">
+          <h3>批次堆叠分布（省 1-8 批 vs 国家 1-5 批）</h3>
+          <canvas id="chart-batch"></canvas>
+        </div>
+        <div class="chart-card">
+          <h3>四大核心区 vs 其他地区拳种数</h3>
+          <canvas id="chart-core"></canvas>
+        </div>
+      </div>
+      <div class="insight-card">
+        <h4>数据洞察 · 联合保护</h4>
+        <p id="insight-joint">—</p>
+      </div>
+    </section>
+
+    <!-- Station 4 : Timeline -->
+    <section id="timeline" class="station station-timeline" data-station="timeline">
+      <div class="section-head">
+        <p class="kicker">卷四 · 代际演变</p>
+        <h2>从省级到国家级：广东武术的批次时间轴</h2>
+        <p class="lead">每个圆点代表一个项目，按省级批次横排；金边代表已入选国家级名录。</p>
+      </div>
+      <div id="timeline-canvas-wrap" class="timeline-wrap">
+        <canvas id="timeline-canvas"></canvas>
+      </div>
+      <div class="timeline-legend">
+        <span class="lg lg-prov">● 省级</span>
+        <span class="lg lg-nat">● 国家级（金边）</span>
+      </div>
+    </section>
+
+    <!-- Station 6 : Insights -->
+    <section id="insights" class="station station-insights" data-station="insights">
+      <div class="section-head">
+        <p class="kicker">卷五 · 核心洞察</p>
+        <h2>五条数据发现</h2>
+      </div>
+      <ol class="insight-list">
+        <li>
+          <span class="num">壹</span>
+          <h4>广东武术类非遗高度集中于珠三角 + 潮汕：佛山(6)、广州(6) 双核领跑，惠州(3)、揭阳(3) 并肩。</h4>
+          <p>全省 30 个武术类项目，前四地市合计 18 项，占 60%；粤西（湛江、茂名、阳江、云浮）仅 3 项，呈现"东密西疏"格局。</p>
+        </li>
+        <li>
+          <span class="num">贰</span>
+          <h4>咏春拳呈现"一源多流"——在佛山（南海/顺德）、广州、江门（鹤山）等地均有独立条目。</h4>
+          <p>同一拳种分属多地，是岭南武学在近代城市化进程中的典型传播路径，也使"联合保护 / 多地共存"成为现实。</p>
+        </li>
+        <li>
+          <span class="num">叁</span>
+          <h4>省级认定集中在第 7 批（6 项）、第 8 批（9 项）；国家级 5 项中 4 项为第 5 批。</h4>
+          <p>体现"先地方发掘，后国家背书"的规律——莫家拳、蔡李佛、咏春等大拳种往往先入省级名录数批后，方升入国家级。</p>
+        </li>
+        <li>
+          <span class="num">肆</span>
+          <h4>莫家拳"两地同源"——东莞（省 3 批）与惠州（省 6 批）共同入选第 5 批国家级名录。</h4>
+          <p>同一拳种跨地市流传时，多地分别申报成为可行路径——既避免重复立项，又让发源地与传承地都能共享保护资源。</p>
+        </li>
+        <li>
+          <span class="num">伍</span>
+          <h4>群峰并立：洪拳(5)、咏春(4)、蔡李佛(3)、莫家拳(2)形成"主干拳种"。</h4>
+          <p>少数大拳种承担传播主干，侠家、白眉、龙形、李家等地方小拳种保留地域独特性——"主干-枝叶"结构清晰。</p>
+        </li>
+      </ol>
+      <footer class="page-foot">
+        <p>数据来源：广东省省级以上非物质文化遗产代表性项目名录 · 统计截止时间：2025 年 12 月 19 日</p>
+        <p>技术：p5.js · Chart.js · 原生 HTML / CSS / JavaScript</p>
+      </footer>
+    </section>
+  </main>
+
+  <!-- 数据 + 模块脚本（顺序敏感） -->
+  <script src="js/data.js"></script>
+  <script src="js/hero.js"></script>
+  <script src="js/map.js"></script>
+  <script src="js/charts.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

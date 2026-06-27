@@ -1,0 +1,17 @@
+# Ignore raw Excel source data (already processed into data.js)
+*.xls
+*.xlsx
+
+# Ignore Windows batch file
+*.bat
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Git
+.git/
